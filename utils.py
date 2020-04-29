@@ -36,5 +36,8 @@ def on_message(client, userdata, message):
 
 def get_ip():
     hostname = socket.gethostname()    
-    IPAddr = socket.gethostbyname(hostname)    
+    s=socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    IPAddr=s.getsockname()[0]
+    s.close()
     return (hostname, IPAddr)
